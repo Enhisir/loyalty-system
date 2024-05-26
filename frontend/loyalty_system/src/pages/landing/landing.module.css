@@ -1,9 +1,12 @@
 .landing {
+    box-sizing: border-box;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, .4) url("../../assets/langing.jpg");
     background-position: center;
     background-size: cover;
@@ -26,7 +29,7 @@
     gap: 10px;
     align-items: center;
 
-    width: 480px;
+    width: 500px;
     height: min-content;
 }
 
@@ -41,6 +44,6 @@
     }
 
     .banner .langingText {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 }

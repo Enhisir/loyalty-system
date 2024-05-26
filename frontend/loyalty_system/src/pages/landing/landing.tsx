@@ -6,7 +6,7 @@ export default function LandingPage() {
         <div className={classes.landing}>
             <Header landing />
             <div className={classes.banner}>
-                <h1 className={classes.langingText}>Just count your points, NOW!</h1>
+                <h1 className={classes.langingText}>You should count your points, NOW!</h1>
                 <button>Start counting</button>
             </div>
         </div>
