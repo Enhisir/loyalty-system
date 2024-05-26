@@ -15,10 +15,12 @@
     "axios": "^1.7.2",
     "normalize.css": "^8.0.1",
     "qr-scanner": "^1.4.2",
+    "qrcode.react": "^3.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
