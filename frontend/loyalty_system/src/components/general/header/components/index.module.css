@@ -4,7 +4,7 @@
     width: calc(var(--header-height) * 0.8);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
     .logoImage {
         overflow: hidden;
         height: 50px;
