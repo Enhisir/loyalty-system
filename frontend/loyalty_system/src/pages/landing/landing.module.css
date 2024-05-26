@@ -26,11 +26,21 @@
     gap: 10px;
     align-items: center;
 
-    width: 300px;
+    width: 480px;
     height: min-content;
 }
 
-.banner h2 {
+.banner .langingText {
     color: white;
     text-align: center;
+}
+
+@media (max-width: 576px) {
+    .banner {
+        width: 300px;
+    }
+
+    .banner .langingText {
+        font-size: 2rem;
+    }
 }
