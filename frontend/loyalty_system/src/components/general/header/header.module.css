@@ -1,0 +1,72 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 9999;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.header a,
+.header a:hover {
+  color: black;
+}
+
+.landingHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 9999;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.landingHeader * {
+  color: white;
+}
+
+.landingHeader a,
+.landingHeader a:hover {
+  color: white;
+}
+
+.leftWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.rightWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media (max-width: 480px) {
+  .header, .landingHeader {
+    height: 100px;
+  }
+
+  .header *, .landingHeader * {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .header, .landingHeader {
+    height: 100px;
+  }
+  
+  .header *, .landingHeader * {
+    font-size: 0.8rem;
+  }
+}

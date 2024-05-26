@@ -1,0 +1,45 @@
+.logoImage {
+    overflow: hidden;
+    height: calc(var(--header-height) * 0.8);
+    width: calc(var(--header-height) * 0.8);
+}
+
+@media (max-width: 480px) {
+    .logoImage {
+        overflow: hidden;
+        height: 50px;
+        width: 50px;
+    }
+}
+
+.logoContainer {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    padding: calc(var(--header-height) * 0.1);
+    align-items: center;
+    gap: 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.logoContainer:hover {
+    background-color: #00000020;
+}
+
+.headerItem {
+    padding: calc(var(--header-height) * 0.1) 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 100%;
+
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.headerItem:hover {
+    background-color: #00000040;
+}
