@@ -2,33 +2,67 @@ import QrScanner from 'qr-scanner';
 import classes from './scanCode.module.css';
 import cameraLogo from '../../assets/camera.svg';
 import { useEffect, useRef, useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 export default function ScanCode() {
+    const navigate = useNavigate();
+
     const [onStreamReady, setOnStreamReady] = useState<boolean>(false);
     const [mediaStream, setMediaStream] = useState<MediaStream | null>(null);
     const [qrScanner, setQrScanner] = useState<QrScanner | null>(null);
     const mediaStreamRef = useRef();
 
+    const trySendCode = (code: string) => {
+        sendCode(code);
+    }
 
+    const sendCode = (code: string) => {
+        tryStopCamera();
+        navigate('/count', { state: { userCode: code } });
+    };
 
-    const tryGetVideoPermission = () => {
+    const tryOpenCamera = () => {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true })
+            navigator.mediaDevices
+                .getUserMedia({
+                    video: {
+                        facingMode: "environment",
+                        width: { max: 720 },
+                        height: { max: 720 },
+                        frameRate: { ideal: 24 }
+                    }
+                })
                 .then(stream => {
                     setMediaStream(stream);
                     setOnStreamReady(true);
                 })
-                .catch(err => console.error(err));
+                .catch(err => {
+                    alert(err);
+                    console.error(err);
+                });
         }
     };
 
+    const tryStopCamera = () => {
+        mediaStream?.getTracks().forEach((track) => track.stop());
+        qrScanner?.stop();
+        qrScanner?.destroy();
+    };
+
+    document
+        .querySelectorAll('a')
+        .forEach(
+            element => element.addEventListener(
+                'click', () => tryStopCamera()));
+
     useEffect(() => {
-        navigator.permissions.query({
-            name: 'geolocation'
-        }).then((result) => {
-            setOnStreamReady(result.state == 'granted')
-        });
+        navigator.permissions
+            .query({ name: "camera" })
+            .then((result) => {
+                const isGranted = result.state == 'granted';
+                setOnStreamReady(isGranted);
+                if (isGranted) tryOpenCamera();
+            });
     }, []);
 
     useEffect(() => {
@@ -36,11 +70,13 @@ export default function ScanCode() {
             mediaStreamRef.current.srcObject = mediaStream;
             const scanner = new QrScanner(
                 mediaStreamRef.current,
-                result => console.log('decoded qr code:', result),
+                result => {
+                    console.log(`decoded qr code: ${result}`);
+                    trySendCode(result);
+                },
             );
             scanner.start();
             setQrScanner(scanner);
-            
         }
     }, [mediaStream]);
 
@@ -48,7 +84,6 @@ export default function ScanCode() {
         <main>
             <div className={classes.centeredItem}>
                 <div className={classes.scanCodeTitle}>Scan QR-code</div>
-
                 {
                     onStreamReady
                         ? <video
@@ -61,7 +96,7 @@ export default function ScanCode() {
                                     <img src={cameraLogo} />
                                 </div>
                                 <span className={classes.describe}>Grant camera permissions to continue</span>
-                                <button onClick={tryGetVideoPermission}>GRANT PERMISSION</button>
+                                <button onClick={tryOpenCamera}>GRANT PERMISSION</button>
                             </>
                         )
                 }

@@ -6,6 +6,7 @@ import Header from './components/general/header/header';
 import SignUp from './pages/signup/signup';
 import Account from './pages/account/account';
 import ScanCode from './pages/scanCode/scanCode';
+import CountPoints from './pages/countPoints/countPoints';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="signup" element={<SignUp />} />
               <Route path="account" element={<Account />} />
               <Route path="scan" element={<ScanCode />} />
+              <Route path="count" element={<CountPoints />} />
             </Routes>
           </>
         } />
