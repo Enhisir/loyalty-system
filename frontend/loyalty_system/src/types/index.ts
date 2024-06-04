@@ -13,3 +13,7 @@ export type UserPointsInfo = {
   name: string;
   points: number;
 };
+
+export type SendUserPoints = {
+  points: number;
+};
