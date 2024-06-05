@@ -8,10 +8,10 @@ export default function Logo() {
             <div className={classes.logoImage}>
                 <img src={giftLogo}></img>
             </div>
-            <h2>
+            <h3>
                 Loyalty
                 <br />&emsp;System
-            </h2>
+            </h3>
         </Link>
     );
 }

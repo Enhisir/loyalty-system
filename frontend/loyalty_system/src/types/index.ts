@@ -1,15 +1,22 @@
 export type UserInfo = {
   name: string;
-  role: Role.User;
+  role: Role;
 };
 
 export enum Role {
   User,
-  Admin,
+  Manager,
 }
 
+export type AuthInfo = {
+  user: UserInfo;
+  accessToken: string;
+  refreshToken: string;
+  accessTokenExpires: number;
+};
+
 export type UserPointsInfo = {
-  id: string;
+  code: string;
   name: string;
   points: number;
 };
@@ -17,3 +24,14 @@ export type UserPointsInfo = {
 export type SendUserPoints = {
   points: number;
 };
+
+export type SignInForm = {
+  phone: string;
+  password: string;
+}
+
+export type SignUpForm = {
+  phone: string;
+  name: string;
+  password: string;
+}

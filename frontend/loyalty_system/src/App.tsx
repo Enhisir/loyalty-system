@@ -7,6 +7,8 @@ import SignUp from './pages/signup/signup';
 import Account from './pages/account/account';
 import ScanCode from './pages/scanCode/scanCode';
 import CountPoints from './pages/countPoints/countPoints';
+import { ProtectedRoute } from './auth';
+import ManagerRoute from './auth/managerRoute';
 
 function App() {
   return (
@@ -19,9 +21,9 @@ function App() {
             <Routes>
               <Route path="signin" element={<SignIn />} />
               <Route path="signup" element={<SignUp />} />
-              <Route path="account" element={<Account />} />
-              <Route path="scan" element={<ScanCode />} />
-              <Route path="count" element={<CountPoints />} />
+              <Route path="account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+              <Route path="scan" element={<ManagerRoute><ScanCode /></ManagerRoute>} />
+              <Route path="count" element={<ManagerRoute><CountPoints /></ManagerRoute>} />
             </Routes>
           </>
         } />
